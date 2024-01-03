@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
     bool isHitted;
+    public delegate void LootCollision(); 
+    public static event LootCollision OnLootCollision;
 
     private void Update()
     {
@@ -13,8 +15,8 @@ public class Bullet : MonoBehaviour
     
         StartCoroutine(DisapperAfterShoot());
 
-        if (isHitted )
-            Destroy(gameObject);
+       // if (isHitted )
+            //Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,16 +24,32 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Player")
             return;
 
-        if (collision.GetComponent<MonsterDamage>())
-            collision.GetComponent<MonsterDamage>().Action();
 
-        isHitted = true;
-        return;
+        if (collision.gameObject.CompareTag("Loot"))
+        {
+            Destroy(collision.gameObject);
+            OnLootCollision?.Invoke();
+        }
+
+       // if (collision.GetComponent<MonsterDamage>())
+          //  collision.GetComponent<MonsterDamage>().Action();
+
+        //isHitted = true;
+        //return;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Loot"))
+        {
+            Destroy(collision.gameObject); 
+            OnLootCollision?.Invoke(); 
+        }
     }
 
     IEnumerator DisapperAfterShoot()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         Destroy(gameObject);
     }
 }
