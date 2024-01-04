@@ -6,6 +6,10 @@ public class DropLoot : MonoBehaviour
 {
     public TypeOfLoot loot;
 
+    //[SerializeField] GameObject hpPrefab;
+    //[SerializeField] GameObject axePrefab;
+    [SerializeField] GameObject moneyPrefab;
+
     private void OnEnable()
     {
         Bullet.OnLootCollision += HPLoot;
@@ -13,7 +17,7 @@ public class DropLoot : MonoBehaviour
         Bullet.OnLootCollision += MoneyLoot;
     }
 
-    public void HPLoot()
+    private void HPLoot()
     {
         if (loot == TypeOfLoot.HP)
         {
@@ -22,7 +26,7 @@ public class DropLoot : MonoBehaviour
         }
     }
 
-    public void AxeLoot()
+    private void AxeLoot()
     {
 
         if (loot == TypeOfLoot.Axe)
@@ -32,11 +36,11 @@ public class DropLoot : MonoBehaviour
         }
     }
 
-    public void MoneyLoot()
+    private void MoneyLoot()
     {
         if (loot == TypeOfLoot.Money)
         {
-            Debug.Log("Money loot dropped!");
+            Instantiate(moneyPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -47,8 +51,6 @@ public class DropLoot : MonoBehaviour
         Bullet.OnLootCollision -= AxeLoot;
         Bullet.OnLootCollision -= MoneyLoot;
     }
-
-
 }
 
 public enum TypeOfLoot

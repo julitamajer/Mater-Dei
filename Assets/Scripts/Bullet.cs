@@ -14,9 +14,6 @@ public class Bullet : MonoBehaviour
         transform.Translate(transform.right * transform.localScale.x * speed *Time.deltaTime);
     
         StartCoroutine(DisapperAfterShoot());
-
-       // if (isHitted )
-            //Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,25 +22,17 @@ public class Bullet : MonoBehaviour
             return;
 
 
-        if (collision.gameObject.CompareTag("Loot"))
+        if (collision.CompareTag("Loot"))
         {
-            Destroy(collision.gameObject);
             OnLootCollision?.Invoke();
+            Destroy(gameObject);
         }
 
-       // if (collision.GetComponent<MonsterDamage>())
-          //  collision.GetComponent<MonsterDamage>().Action();
-
-        //isHitted = true;
-        //return;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Loot"))
+        if (collision.CompareTag("Monster"))
         {
-            Destroy(collision.gameObject); 
-            OnLootCollision?.Invoke(); 
+            if (collision.GetComponent<MonsterDamage>())
+                collision.GetComponent<MonsterDamage>().Action();
+            Destroy(gameObject);
         }
     }
 
