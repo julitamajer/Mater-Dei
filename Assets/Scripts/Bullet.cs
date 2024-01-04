@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
     bool isHitted;
-    public delegate void LootCollision(); 
+    public delegate void LootCollision(int objectId);
     public static event LootCollision OnLootCollision;
 
     private void Update()
@@ -21,10 +22,13 @@ public class Bullet : MonoBehaviour
         if (collision.tag == "Player")
             return;
 
+        int objectId = collision.gameObject.GetInstanceID();
+        Debug.Log(objectId);
 
         if (collision.CompareTag("Loot"))
         {
-            OnLootCollision?.Invoke();
+            OnLootCollision?.Invoke(objectId);
+            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
 
@@ -32,6 +36,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.GetComponent<MonsterDamage>())
                 collision.GetComponent<MonsterDamage>().Action();
+            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }

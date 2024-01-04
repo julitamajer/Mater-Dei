@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,20 @@ public class DropLoot : MonoBehaviour
 {
     public TypeOfLoot loot;
 
+
     [SerializeField] GameObject hpPrefab;
     [SerializeField] GameObject axePrefab;
     [SerializeField] GameObject moneyPrefab;
 
+
+    [HideInInspector]
+    public int objectID;
+
+    private void Awake()
+    {
+        objectID = gameObject.GetInstanceID();
+        Debug.Log(objectID);
+    }
 
     private void OnEnable()
     {
@@ -18,31 +29,40 @@ public class DropLoot : MonoBehaviour
         Bullet.OnLootCollision += MoneyLoot;
     }
 
-    private void HPLoot()
+    private void HPLoot(int objectId)
     {
-        if (loot == TypeOfLoot.HP)
+        if (objectId == objectID)
         {
-            Instantiate(hpPrefab, transform.position, transform.rotation);
-            Destroy(gameObject);
+            if (loot == TypeOfLoot.HP)
+            {
+                Instantiate(hpPrefab, transform.position, transform.rotation);
+
+            }
+        }
+   
+    }
+
+    private void AxeLoot(int objectId)
+    {
+        if (objectId == objectID)
+        {
+            if (loot == TypeOfLoot.Axe)
+            {
+                Instantiate(axePrefab, transform.position, transform.rotation);
+
+            }
         }
     }
 
-    private void AxeLoot()
+    private void MoneyLoot(int objectId)
     {
-
-        if (loot == TypeOfLoot.Axe)
+        if (objectId == objectID)
         {
-            Instantiate(axePrefab, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
-    }
+            if (loot == TypeOfLoot.Money)
+            {
+                Instantiate(moneyPrefab, transform.position, transform.rotation);
 
-    private void MoneyLoot()
-    {
-        if (loot == TypeOfLoot.Money)
-        {
-            Instantiate(moneyPrefab, transform.position, transform.rotation);
-            Destroy(gameObject);
+            }
         }
     }
 

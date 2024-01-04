@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/Level1Prolog.unity
     guid: 29cbd832b5b71fc4a92be54d365d985c
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: d00e951220209814eb4f965d63589964
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 60c83d551384f904e85ea3377893d64e, type: 2}

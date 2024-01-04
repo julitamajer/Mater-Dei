@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -8,12 +9,15 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] Transform shootingPoint;
     public bool canShoot = true;
 
-    public void Shoot()
+    public void Shoot(InputAction.CallbackContext context)
     {
-        if (!canShoot)
-            return;
+        if (context.started)
+        {
+            if (!canShoot)
+                return;
 
-        GameObject bulletInst = Instantiate(bullet, shootingPoint);
-        bulletInst.transform.parent = null;
+            GameObject bulletInst = Instantiate(bullet, shootingPoint);
+            bulletInst.transform.parent = null;
+        }
     }
 }

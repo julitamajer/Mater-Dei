@@ -9,6 +9,8 @@ TagManager:
   - Money
   - Heart
   - Axe
+  - Entry
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX
