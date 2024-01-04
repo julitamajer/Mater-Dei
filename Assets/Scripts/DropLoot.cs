@@ -6,9 +6,10 @@ public class DropLoot : MonoBehaviour
 {
     public TypeOfLoot loot;
 
-    //[SerializeField] GameObject hpPrefab;
-    //[SerializeField] GameObject axePrefab;
+    [SerializeField] GameObject hpPrefab;
+    [SerializeField] GameObject axePrefab;
     [SerializeField] GameObject moneyPrefab;
+
 
     private void OnEnable()
     {
@@ -21,7 +22,7 @@ public class DropLoot : MonoBehaviour
     {
         if (loot == TypeOfLoot.HP)
         {
-            Debug.Log("HP loot dropped!");
+            Instantiate(hpPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -31,7 +32,7 @@ public class DropLoot : MonoBehaviour
 
         if (loot == TypeOfLoot.Axe)
         {
-            Debug.Log("Axe loot dropped!");
+            Instantiate(axePrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }

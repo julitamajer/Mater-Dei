@@ -7,6 +7,8 @@ TagManager:
   - Loot
   - Monster
   - Money
+  - Heart
+  - Axe
   layers:
   - Default
   - TransparentFX
