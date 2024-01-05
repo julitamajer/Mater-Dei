@@ -13,8 +13,8 @@ public class UIBehaviour : MonoBehaviour
     [SerializeField] TextMeshProUGUI heart;
     int heartCount = 0;
 
-    [SerializeField] TextMeshProUGUI axe;
-    int axeCount = 0;
+    public TextMeshProUGUI axe;
+    public int axeCount = 0;
     [SerializeField] GameObject axeImage;
 
     [SerializeField] TextMeshProUGUI time;

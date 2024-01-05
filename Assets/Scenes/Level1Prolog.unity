@@ -332,6 +332,7 @@ MonoBehaviour:
   score: {fileID: 2093101451}
   heart: {fileID: 1892948178}
   axe: {fileID: 777578477}
+  axeCount: 0
   axeImage: {fileID: 1776473937}
   time: {fileID: 391566599}
   timeCount: 350
@@ -2533,6 +2534,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: aad37c1f-47c3-4911-9d5a-6a45cd106ddd
     m_ActionName: Player/Shoot[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1419191848}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: Throw
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ea0eac36-290e-42a3-a01e-bd76b02dcb66
+    m_ActionName: Player/Throw[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2642,6 +2659,9 @@ MonoBehaviour:
   bullet: {fileID: 3655286026065939703, guid: c3af3e1abb1e3cc4181c091402ecf37e, type: 3}
   shootingPoint: {fileID: 465723906}
   canShoot: 1
+  axe: {fileID: 4855528188536904149, guid: 51b6363a194cf6348b673090c92d586b, type: 3}
+  throwForce: 7
+  ui: {fileID: 163239791}
 --- !u!114 &1419191849
 MonoBehaviour:
   m_ObjectHideFlags: 0

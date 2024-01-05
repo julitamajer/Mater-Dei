@@ -6,7 +6,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
-    bool isHitted;
     public delegate void LootCollision(int objectId);
     public static event LootCollision OnLootCollision;
 
@@ -19,7 +18,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
             return;
 
         int objectId = collision.gameObject.GetInstanceID();
@@ -27,7 +26,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.CompareTag("Loot"))
         {
-            OnLootCollision?.Invoke(objectId);
+            HandleLootCollision(objectId);
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
@@ -45,5 +44,10 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         Destroy(gameObject);
+    }
+
+    public static void HandleLootCollision(int objectId)
+    {
+        OnLootCollision?.Invoke(objectId);
     }
 }

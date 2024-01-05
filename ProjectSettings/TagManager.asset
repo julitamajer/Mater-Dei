@@ -11,6 +11,7 @@ TagManager:
   - Axe
   - Entry
   - PlayerCollider
+  - Ground
   layers:
   - Default
   - TransparentFX
