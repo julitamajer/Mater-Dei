@@ -187,6 +187,7 @@ MonoBehaviour:
   hpPrefab: {fileID: 6588927359913385973, guid: 57664142ff191ec4597f24d296592b8b, type: 3}
   axePrefab: {fileID: 6588927359913385973, guid: 23fa942aba65f364888e392cba83dcdc, type: 3}
   moneyPrefab: {fileID: 6588927359913385973, guid: 770359b092324a04aa16aa77ce126cac, type: 3}
+  objectID: 0
 --- !u!61 &4532207799740785491
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0016563982, y: 0.05304685}

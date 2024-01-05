@@ -11,6 +11,7 @@ public class DontDestroy : MonoBehaviour
     {
         objectID = name + transform.position.ToString() + transform.eulerAngles.ToString();
     }
+
     void Start()
     {
         for (int i = 0; i < Object.FindObjectsOfType<DontDestroy>().Length; i++)
@@ -20,7 +21,6 @@ public class DontDestroy : MonoBehaviour
                 if (Object.FindObjectsOfType<DontDestroy>()[i].objectID == objectID)
                     Destroy(gameObject);
             }
-
         }
 
         DontDestroyOnLoad(gameObject);

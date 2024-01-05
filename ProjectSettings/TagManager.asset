@@ -12,6 +12,8 @@ TagManager:
   - Entry
   - PlayerCollider
   - Ground
+  - Start
+  - End
   layers:
   - Default
   - TransparentFX

@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
 
     IEnumerator DisapperAfterShoot()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(.3f);
         Destroy(gameObject);
     }
 

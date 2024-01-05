@@ -25,7 +25,7 @@ public class Axe : MonoBehaviour
 
     IEnumerator DisapperAfterThrow()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }

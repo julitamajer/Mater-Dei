@@ -14,8 +14,32 @@ public class LootBehaviour : MonoBehaviour
     public delegate void CollectAxe();
     public static event CollectAxe collectAxe;
 
+    Transform groundCheck;
+    LayerMask groundLayer;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    Rigidbody2D rb;
+
+    private void Awake()
+    {
+        groundCheck = transform.GetChild(0);
+        groundLayer = LayerMask.GetMask("Ground");
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        if (IsGrounded()) 
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Money"))
         {
