@@ -6,54 +6,72 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public Transform groundCheck;
-    public LayerMask groundLayer;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask groundLayer;
 
-    private float horizontal;
-    private float speed = 5f;
-    private float jumpingPower = 7f;
-    private bool isFacingRight = true;
+    float horizontal;
+    [SerializeField] float speed = 3f;
+    float jumpingPower = 7f;
+    bool isFacingRight = true;
+    bool isMovingToTarget = false;
+
+    GameObject currentStairs;
 
     void Update()
     {
-        if (!isFacingRight && horizontal > 0f)
+        if (Input.GetKey(KeyCode.S))
         {
-            Flip();
-        }
-        else if (isFacingRight && horizontal < 0f)
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+            StopCoroutine(MoveTowardsTarget(gameObject.transform.position));
+        } 
+
+        if (!isMovingToTarget)
         {
-            Flip();
+            if (!isFacingRight && horizontal > 0f)
+            {
+                Flip();
+            }
+            else if (isFacingRight && horizontal < 0f)
+            {
+                Flip();
+            }
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!isMovingToTarget)
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded())
+        if (!isMovingToTarget)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        }
+            if (context.performed && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            }
 
-        if (context.canceled && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if (context.canceled && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
     }
 
-    private bool IsGrounded()
+    bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    private void Flip()
+    void Flip()
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -61,8 +79,55 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = localScale;
     }
 
+   void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+        {
+            if (collision.CompareTag("Start"))
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+                currentStairs = collision.gameObject.transform.parent.gameObject;
+                Transform end = currentStairs.transform.GetChild(1);
+
+                StartCoroutine(MoveTowardsTarget(end.position));
+            }
+        }
+
+        if (collision.CompareTag("End"))
+        {
+            isMovingToTarget = false;
+        }
+    }
+
+
     public void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
     }
+
+    IEnumerator MoveTowardsTarget(Vector2 targetPosition)
+    {
+        isMovingToTarget = true;
+        float tolerance = 0.1f;
+
+        while (Vector2.Distance(transform.position, targetPosition) > tolerance)
+        {
+
+            if (!Input.GetKey(KeyCode.D) || !Input.GetKey(KeyCode.W))
+            {
+                isMovingToTarget = false;
+                yield break;
+            }
+
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+
+        rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+
+        isMovingToTarget = false;
+    }
+
 }
