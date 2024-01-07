@@ -21,6 +21,18 @@ public class Axe : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("Nun") || collision.gameObject.CompareTag("Priest"))
+        {
+            DamageMonster(collision, collision.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (collision.CompareTag("Monster"))
+        {
+            HandleBossDamage();
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator DisapperAfterThrow()

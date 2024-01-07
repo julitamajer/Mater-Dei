@@ -19,7 +19,6 @@ public class DropLoot : MonoBehaviour
     private void Awake()
     {
         objectID = gameObject.GetInstanceID();
-        Debug.Log(objectID);
     }
 
     private void OnEnable()

@@ -6,8 +6,12 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] float speed;
+
     public delegate void LootCollision(int objectId);
     public static event LootCollision OnLootCollision;
+
+    public delegate void BossDamage();
+    public static event BossDamage OnBossDamage;
 
     private void Update()
     {
@@ -22,7 +26,6 @@ public class Bullet : MonoBehaviour
             return;
 
         int objectId = collision.gameObject.GetInstanceID();
-        Debug.Log(objectId);
 
         if (collision.CompareTag("Loot"))
         {
@@ -33,9 +36,13 @@ public class Bullet : MonoBehaviour
 
         if (collision.CompareTag("Monster"))
         {
-            if (collision.GetComponent<MonsterDamage>())
-                collision.GetComponent<MonsterDamage>().Action();
-            Destroy(collision.gameObject);
+            HandleBossDamage();
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Nun") || collision.gameObject.CompareTag("Priest"))  
+        {
+            DamageMonster(collision, collision.gameObject);
             Destroy(gameObject);
         }
     }
@@ -49,5 +56,18 @@ public class Bullet : MonoBehaviour
     public static void HandleLootCollision(int objectId)
     {
         OnLootCollision?.Invoke(objectId);
+    }
+
+    public static void HandleBossDamage()
+    {
+        OnBossDamage?.Invoke();
+    }
+
+    public static void DamageMonster(Collider2D collision, GameObject obj)
+    {
+        if (collision.GetComponent<MonsterDamage>())
+            collision.GetComponent<MonsterDamage>().Action();
+        Destroy(collision.gameObject);
+        Destroy(obj);
     }
 }

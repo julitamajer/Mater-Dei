@@ -6,6 +6,7 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static PlayerCombat;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] SpriteRenderer playerSprite;
 
     float horizontal;
     [SerializeField] float speed = 3f;
@@ -21,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
     bool isMovingToTarget = false;
 
     GameObject currentStairs;
+
+    void OnEnable()
+    {
+        PlayerCombat.onPlayerDamage += OnDamage;
+        LootBehaviour.collectBossLoot += StopMoving;
+    }
 
     void Update()
     {
@@ -80,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
    void OnTriggerEnter2D(Collider2D collision)
-    {
+   {
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
         {
             if (collision.CompareTag("Start"))
@@ -98,8 +106,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isMovingToTarget = false;
         }
-    }
+   }
 
+    void OnDamage(GameObject tagObject)
+    {
+        StartCoroutine(FadeSpritePlayer());
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -130,4 +142,30 @@ public class PlayerMovement : MonoBehaviour
         isMovingToTarget = false;
     }
 
+    IEnumerator FadeSpritePlayer()
+    {
+        Color color = playerSprite.color;
+        color.a = 0.5f;
+        playerSprite.color = color;
+
+        Physics2D.IgnoreLayerCollision(3, 7, true);
+
+        yield return new WaitForSeconds(2);
+
+        color.a = 100f;
+        playerSprite.color = color;
+
+        Physics2D.IgnoreLayerCollision(3, 7, false);
+    }
+
+    void StopMoving()
+    {
+        
+    }
+
+    void OnDisable()
+    {
+        PlayerCombat.onPlayerDamage -= OnDamage;
+        LootBehaviour.collectBossLoot -= StopMoving;
+    }
 }

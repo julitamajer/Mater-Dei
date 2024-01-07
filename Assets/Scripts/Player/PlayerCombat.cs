@@ -14,6 +14,9 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] UIBehaviour ui;
 
+    public delegate void PlayerDamage(GameObject tagObject);
+    public static event PlayerDamage onPlayerDamage;
+
 
     public void Shoot(InputAction.CallbackContext context)
     {
@@ -29,7 +32,6 @@ public class PlayerCombat : MonoBehaviour
 
     public void Throw(InputAction.CallbackContext context)
     {
-
         if (context.started)
         {
             if (ui.axeCount > 0)
@@ -59,6 +61,14 @@ public class PlayerCombat : MonoBehaviour
         if(context.canceled)
         {
             canShoot= true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Nun") || collision.gameObject.CompareTag("Priest") || collision.gameObject.CompareTag("Monster"))
+        {
+            onPlayerDamage?.Invoke(collision.gameObject);
         }
     }
 

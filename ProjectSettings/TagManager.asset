@@ -14,15 +14,19 @@ TagManager:
   - Ground
   - Start
   - End
+  - Wall
+  - Nun
+  - Priest
+  - BossLoot
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
-  - 
+  - Monster
   - 
   - 
   - 

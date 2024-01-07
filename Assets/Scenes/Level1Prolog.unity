@@ -337,6 +337,10 @@ MonoBehaviour:
   axeImage: {fileID: 1776473937}
   time: {fileID: 391566599}
   timeCount: 350
+  healthBar: {fileID: 1589604087}
+  enemyHealthBar: {fileID: 1441033735}
+  nun: {fileID: 11400000, guid: 6caa8fb42bf84c243a9b15ae2b53adb8, type: 2}
+  priest: {fileID: 11400000, guid: 2863cef99337bf74dba651bd6588ba41, type: 2}
 --- !u!114 &163239792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398400206}
   - component: {fileID: 398400207}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +607,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 8c7413795a25b92459aa6d52aa8f7979, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4432,7 +4436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d004a2f73c094084aa5fef21e0e67125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 2
+  followSpeed: 5
   yOffSet: 3
   followTarget: {fileID: 7696207587621633952}
 --- !u!114 &1996525591
@@ -4874,6 +4878,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  playerSprite: {fileID: 398400207}
   speed: 4
 --- !u!4 &2672159558749345175
 Transform:
@@ -4936,7 +4941,7 @@ GameObject:
   - component: {fileID: 8162367880504613149}
   - component: {fileID: 3120717120519630398}
   - component: {fileID: 3255779362307858850}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5046,7 +5051,7 @@ Transform:
   m_GameObject: {fileID: 4414331304122571279}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3, y: -2.73, z: 0}
+  m_LocalPosition: {x: -0.16, y: -2.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5064,7 +5069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 619861020838275951}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5107,7 +5112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2672159558749345175}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ShootingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

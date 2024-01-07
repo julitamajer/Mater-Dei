@@ -14,6 +14,9 @@ public class LootBehaviour : MonoBehaviour
     public delegate void CollectAxe();
     public static event CollectAxe collectAxe;
 
+    public delegate void CollectBossLoot();
+    public static event CollectBossLoot collectBossLoot;
+
     Transform groundCheck;
     LayerMask groundLayer;
 
@@ -56,6 +59,12 @@ public class LootBehaviour : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Axe"))
         {
             collectAxe?.Invoke();
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("BossLoot"))
+        {
+            collectBossLoot?.Invoke();
             Destroy(gameObject);
         }
     }
