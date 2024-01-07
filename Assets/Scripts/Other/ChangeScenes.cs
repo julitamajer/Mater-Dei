@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class ChangeScenes : MonoBehaviour
@@ -10,6 +11,8 @@ public class ChangeScenes : MonoBehaviour
 
     public delegate void Fade();
     public static event Fade OnFade;
+
+    [SerializeField] InputActionMap actionMap;
 
     private void Start()
     {
@@ -20,14 +23,14 @@ public class ChangeScenes : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            actionMap.Disable();
+
             foreach (var item in dontDestroy)
             {
                 item.enabled = true;
             }
 
             OnFade?.Invoke();
-
-            SceneManager.LoadScene(2);
         }
     }
 }

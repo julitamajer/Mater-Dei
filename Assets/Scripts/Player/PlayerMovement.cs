@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         PlayerCombat.onPlayerDamage += OnDamage;
-        LootBehaviour.collectBossLoot += StopMoving;
+        LootBehaviour.onLastLootCollected += StopMoving;
     }
 
     void Update()
@@ -160,12 +160,13 @@ public class PlayerMovement : MonoBehaviour
 
     void StopMoving()
     {
-        
+        InputActionMap actionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
+        actionMap.Disable();
     }
 
     void OnDisable()
     {
         PlayerCombat.onPlayerDamage -= OnDamage;
-        LootBehaviour.collectBossLoot -= StopMoving;
+        LootBehaviour.onLastLootCollected -= StopMoving;
     }
 }

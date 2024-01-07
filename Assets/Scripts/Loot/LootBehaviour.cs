@@ -5,7 +5,7 @@ using static Bullet;
 
 public class LootBehaviour : MonoBehaviour
 {
-    public delegate void CollectMoney();
+    public delegate void CollectMoney(int worth);
     public static event CollectMoney collectMoney;
 
     public delegate void CollectHeart();
@@ -14,8 +14,11 @@ public class LootBehaviour : MonoBehaviour
     public delegate void CollectAxe();
     public static event CollectAxe collectAxe;
 
-    public delegate void CollectBossLoot();
+    public delegate void CollectBossLoot(int worth);
     public static event CollectBossLoot collectBossLoot;
+
+    public delegate void LastLootCollected();
+    public static event LastLootCollected onLastLootCollected;
 
     Transform groundCheck;
     LayerMask groundLayer;
@@ -46,7 +49,7 @@ public class LootBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Money"))
         {
-            collectMoney?.Invoke();
+            collectMoney?.Invoke(1000);
             Destroy(gameObject);
         }
 
@@ -64,7 +67,8 @@ public class LootBehaviour : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("BossLoot"))
         {
-            collectBossLoot?.Invoke();
+            collectBossLoot?.Invoke(8000);
+            onLastLootCollected?.Invoke();
             Destroy(gameObject);
         }
     }

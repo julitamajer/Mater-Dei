@@ -15,6 +15,7 @@ public class BossBehaviour : MonoBehaviour
     float timeBtwShots;
 
     [SerializeField] GameObject deathPrefab;
+    [SerializeField] GameObject bossLootPrefab;
 
     private void OnEnable()
     {
@@ -46,6 +47,7 @@ public class BossBehaviour : MonoBehaviour
 
             Vector3 clampedPosition = transform.position;
             clampedPosition.y = Mathf.Clamp(clampedPosition.y, -1, 4f);
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, 70, 85.50f);
 
             transform.position = clampedPosition;
 
@@ -63,6 +65,7 @@ public class BossBehaviour : MonoBehaviour
 
     void BossDeath()
     {
+        Instantiate(bossLootPrefab, transform.position, Quaternion.identity);
         Instantiate(deathPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

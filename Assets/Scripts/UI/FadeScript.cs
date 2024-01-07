@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FadeScript : MonoBehaviour
 {
@@ -32,18 +33,18 @@ public class FadeScript : MonoBehaviour
 
         while (fadeIn)
         {
-            if(canvasGroup.alpha < 1)
+            if (canvasGroup.alpha < 1)
             {
                 canvasGroup.alpha += Time.deltaTime;
 
-                if(canvasGroup.alpha >= 1)
+                if (canvasGroup.alpha >= 1)
                 {
                     fadeIn = false;
+                    SceneManager.LoadScene(2);
                 }
             }
+            yield return new WaitForEndOfFrame(); 
         }
-
-        yield return null;
     }
 
     IEnumerator HideFade()

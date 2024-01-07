@@ -18,6 +18,7 @@ TagManager:
   - Nun
   - Priest
   - BossLoot
+  - BossBullet
   layers:
   - Default
   - TransparentFX

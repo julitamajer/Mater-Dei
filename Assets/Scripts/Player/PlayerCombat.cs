@@ -66,7 +66,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Nun") || collision.gameObject.CompareTag("Priest") || collision.gameObject.CompareTag("Monster"))
+        if (collision.gameObject.CompareTag("Nun") || collision.gameObject.CompareTag("Priest") || collision.gameObject.CompareTag("BossBullet"))
         {
             onPlayerDamage?.Invoke(collision.gameObject);
         }

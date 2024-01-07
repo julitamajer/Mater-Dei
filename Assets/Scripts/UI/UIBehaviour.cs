@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class UIBehaviour : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI score;
-    int moneyWorth = 1000;
-    int bossLootWorth = 8000;
     int scoreCount = 0;
 
     [SerializeField] TextMeshProUGUI heart;
@@ -31,20 +29,29 @@ public class UIBehaviour : MonoBehaviour
     public delegate void BossKilled();
     public static event BossKilled OnBossKilled;
 
+    public delegate void EndGame();
+    public static event EndGame OnEndGame;
+
+    [SerializeField] GameObject scorePanel;
+    [SerializeField] TextMeshProUGUI socrePanelText;
+
+    [SerializeField] GameObject deadPanel;
+
+    bool timeStop;
+
     private void OnEnable()
     {
         LootBehaviour.collectMoney += AddScoreMoney;
         LootBehaviour.collectHeart += AddHeart;
         LootBehaviour.collectAxe += AddAxe;
-        LootBehaviour.collectBossLoot += AddScoreBossLoot;
+        LootBehaviour.collectBossLoot += AddScoreMoney;
+        LootBehaviour.onLastLootCollected += EndGameScore;
 
         PlayerCombat.onPlayerDamage += DecreaseHealth;
 
         Bullet.OnBossDamage += DecreaseBossHealth;
 
         EnemyBullet.OnBossDamageOnPlayer += DecreaseHealthBoss;
-
-
     }
 
     private void Start()
@@ -62,27 +69,21 @@ public class UIBehaviour : MonoBehaviour
         {
             OnBossKilled?.Invoke();
         }
+
+        if  (healthBar.value <= 0 && heartCount==0)
+        {
+            PlayerDeadth();
+        }
     }
 
-    private void AddScoreMoney()
+    private void AddScoreMoney(int worth)
     {
-        scoreCount += moneyWorth;
+        scoreCount += worth;
 
         if(scoreCount <= 9999)
             score.SetText("0" + scoreCount.ToString());
 
         if(scoreCount >= 10000)
-            score.SetText(scoreCount.ToString());
-    }
-
-    private void AddScoreBossLoot()
-    {
-        scoreCount += bossLootWorth;
-
-        if (scoreCount <= 9999)
-            score.SetText("0" + scoreCount.ToString());
-
-        if (scoreCount >= 10000)
             score.SetText(scoreCount.ToString());
     }
 
@@ -110,9 +111,15 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
+    void PlayerDeadth()
+    {
+        deadPanel.SetActive(true);
+        OnEndGame?.Invoke();
+    }
+
     void DecreaseHeart()
     {
-        if(healthBar.value <= 0) 
+        if(healthBar.value <= 0 && heartCount > 0) 
         {
             heartCount--;
             heart.SetText(" " + heartCount.ToString());
@@ -121,10 +128,13 @@ public class UIBehaviour : MonoBehaviour
     }
     private void DecreaseTime()
     {
-        if (timeCount > 0)
+        if (!timeStop)
         {
-            timeCount--;
-            time.SetText("0" + timeCount.ToString());
+            if (timeCount > 0)
+            {
+                timeCount--;
+                time.SetText("0" + timeCount.ToString());
+            }
         }
     }
 
@@ -151,6 +161,48 @@ public class UIBehaviour : MonoBehaviour
         enemyHealthBar.value -= 0.10f;
     }
 
+    void EndGameScore()
+    {
+        timeStop = true; 
+
+        if(!(heartCount == 0))     
+            InvokeRepeating("HeartsToPoints", 0.2f, 0.2f);
+    }
+
+    void HeartsToPoints()
+    {
+        heartCount--;
+        heart.SetText(" " + heartCount.ToString());
+
+        scoreCount++;
+        score.SetText(scoreCount.ToString());
+
+        if (heartCount == 0)
+        {
+            CancelInvoke("HeartsToPoints");
+            InvokeRepeating("TimeToPoints", 0.05f, 0.05f);
+        }
+    }
+
+    void  TimeToPoints()
+    {
+        timeCount--;
+        time.SetText("0" + timeCount.ToString());
+
+        scoreCount += 100;
+        score.SetText(scoreCount.ToString());
+
+        if (timeCount == 0)
+        {
+            scorePanel.SetActive(true);
+            socrePanelText.SetText("SCORE: " + scoreCount.ToString());
+            PlayerPrefs.SetInt("Highscore", scoreCount);
+            PlayerPrefs.SetInt("GamePlayed", 1);
+            OnEndGame?.Invoke();
+            CancelInvoke("TimeToPoints");
+        }
+    }
+
     private void OnDisable()
     {
         LootBehaviour.collectMoney -= AddScoreMoney;
@@ -162,5 +214,6 @@ public class UIBehaviour : MonoBehaviour
         Bullet.OnBossDamage -= DecreaseBossHealth;
 
         EnemyBullet.OnBossDamageOnPlayer -= DecreaseHealthBoss;
+        LootBehaviour.onLastLootCollected -= EndGameScore;
     }
 }
