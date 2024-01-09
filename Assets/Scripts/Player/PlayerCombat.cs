@@ -17,7 +17,6 @@ public class PlayerCombat : MonoBehaviour
     public delegate void PlayerDamage(GameObject tagObject);
     public static event PlayerDamage onPlayerDamage;
 
-
     public void Shoot(InputAction.CallbackContext context)
     {
         if (context.started)

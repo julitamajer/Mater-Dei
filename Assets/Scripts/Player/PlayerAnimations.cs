@@ -17,8 +17,6 @@ public class PlayerAnimations : MonoBehaviour
         {
             playerAnimator.SetBool("OnStairs", false);
         }
-
-
     }
 
 }

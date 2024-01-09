@@ -11,10 +11,10 @@ public class MenuBehaviour : MonoBehaviour
     [SerializeField] GameObject lastScore;
     [SerializeField] TextMeshProUGUI lastScoreText;
 
-    void Update() {
-
-        if(Input.anyKey) {
-            //Change scene
+    private void Update() 
+    {
+        if(Input.anyKey) 
+        {
             StartCoroutine(BlackScreen(2.0f));
             SceneManager.LoadScene(1);
         }
@@ -24,9 +24,10 @@ public class MenuBehaviour : MonoBehaviour
             lastScore.SetActive(true);    
             lastScoreText.SetText("HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString());
         }
-    } 
+    }
 
-    IEnumerator BlackScreen(float delay) {
+    private IEnumerator BlackScreen(float delay) 
+    {
         blackScreen.SetActive(true);
         yield return new WaitForSeconds(delay);
     }

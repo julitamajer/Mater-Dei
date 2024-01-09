@@ -11,9 +11,7 @@ public class Axe : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         int objectId = collision.gameObject.GetInstanceID();
-
 
         if (collision.CompareTag("Loot"))
         {
@@ -35,7 +33,7 @@ public class Axe : MonoBehaviour
         }
     }
 
-    IEnumerator DisapperAfterThrow()
+    private IEnumerator DisapperAfterThrow()
     {
         yield return new WaitForSeconds(1);
         Destroy(gameObject);

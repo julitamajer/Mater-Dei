@@ -111,13 +111,13 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
-    void PlayerDeadth()
+    private void PlayerDeadth()
     {
         deadPanel.SetActive(true);
         OnEndGame?.Invoke();
     }
 
-    void DecreaseHeart()
+    private void DecreaseHeart()
     {
         if(healthBar.value <= 0 && heartCount > 0) 
         {
@@ -138,7 +138,7 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
-    void DecreaseHealth(GameObject tagObject)
+    private void DecreaseHealth(GameObject tagObject)
     {
         switch (tagObject.tag)
         {
@@ -151,17 +151,17 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
-    void DecreaseHealthBoss()
+    private void DecreaseHealthBoss()
     {
         healthBar.value -= 0.60f;
     }
 
-    void DecreaseBossHealth()
+    private void DecreaseBossHealth()
     {
         enemyHealthBar.value -= 0.10f;
     }
 
-    void EndGameScore()
+    private void EndGameScore()
     {
         timeStop = true; 
 
@@ -169,7 +169,7 @@ public class UIBehaviour : MonoBehaviour
             InvokeRepeating("HeartsToPoints", 0.2f, 0.2f);
     }
 
-    void HeartsToPoints()
+    private void HeartsToPoints()
     {
         heartCount--;
         heart.SetText(" " + heartCount.ToString());
@@ -184,7 +184,7 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
-    void  TimeToPoints()
+    private void  TimeToPoints()
     {
         timeCount--;
         time.SetText("0" + timeCount.ToString());
@@ -196,10 +196,14 @@ public class UIBehaviour : MonoBehaviour
         {
             scorePanel.SetActive(true);
             socrePanelText.SetText("SCORE: " + scoreCount.ToString());
+
             PlayerPrefs.SetInt("Highscore", scoreCount);
             PlayerPrefs.SetInt("GamePlayed", 1);
+
             ResetUIValues();
+
             OnEndGame?.Invoke();
+
             CancelInvoke("TimeToPoints");
         }
     }
@@ -213,7 +217,7 @@ public class UIBehaviour : MonoBehaviour
         enemyHealthBar.value = 1;
 
         axeCount = 0;
-        score.SetText("A " + "0");
+        axe.SetText("A " + "0");
 
         timeStop = false;
 
@@ -226,12 +230,12 @@ public class UIBehaviour : MonoBehaviour
         LootBehaviour.collectMoney -= AddScoreMoney;
         LootBehaviour.collectHeart -= AddHeart;
         LootBehaviour.collectAxe -= AddAxe;
+        LootBehaviour.onLastLootCollected -= EndGameScore;
 
         PlayerCombat.onPlayerDamage -= DecreaseHealth;
 
         Bullet.OnBossDamage -= DecreaseBossHealth;
 
         EnemyBullet.OnBossDamageOnPlayer -= DecreaseHealthBoss;
-        LootBehaviour.onLastLootCollected -= EndGameScore;
     }
 }

@@ -22,13 +22,13 @@ public class BossBehaviour : MonoBehaviour
         UIBehaviour.OnBossKilled += BossDeath;
     }
 
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         timeBtwShots = startTimeBtwShots;
     }
 
-    void Update()
+    private void Update()
     {
         if (player != null)
         {
@@ -63,7 +63,7 @@ public class BossBehaviour : MonoBehaviour
         }
     }
 
-    void BossDeath()
+    private void BossDeath()
     {
         Instantiate(bossLootPrefab, transform.position, Quaternion.identity);
         Instantiate(deathPrefab, transform.position, Quaternion.identity);

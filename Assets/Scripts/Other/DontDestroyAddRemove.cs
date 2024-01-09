@@ -6,17 +6,16 @@ public class DontDestroyAddRemove : MonoBehaviour
 {
     private void Awake()
     {
-            GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
+        GameObject[] gameObjects = GameObject.FindObjectsOfType<GameObject>();
 
-            foreach (GameObject obj in gameObjects)
+        foreach (GameObject obj in gameObjects)
+        {
+            DontDestroy dontDestroyScript = obj.GetComponent<DontDestroy>();
+
+            if (dontDestroyScript != null)
             {
-                DontDestroy dontDestroyScript = obj.GetComponent<DontDestroy>();
-
-                if (dontDestroyScript != null)
-                {
-         
-                    obj.AddComponent<DontDestroy>();
-                }
+                obj.AddComponent<DontDestroy>();
             }
+        }
     }
 }

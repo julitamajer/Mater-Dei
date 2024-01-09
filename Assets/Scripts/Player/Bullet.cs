@@ -47,7 +47,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    IEnumerator DisapperAfterShoot()
+    private IEnumerator DisapperAfterShoot()
     {
         yield return new WaitForSeconds(.3f);
         Destroy(gameObject);
@@ -67,6 +67,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.GetComponent<MonsterDamage>())
             collision.GetComponent<MonsterDamage>().Action();
+
         Destroy(collision.gameObject);
         Destroy(obj);
     }

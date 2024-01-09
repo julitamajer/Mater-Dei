@@ -8,11 +8,10 @@ public class SpawnPlayer : MonoBehaviour
 {
     GameObject player;
     [SerializeField] private GameObject playerSpawn;
+
     GameObject mainCamera;
+
     InputActionMap actionMap;
-
-    private DontDestroy[] dontDestroy;
-
 
     public delegate void Fade();
     public static event Fade OutFade;
@@ -21,17 +20,17 @@ public class SpawnPlayer : MonoBehaviour
 
     private void Start()
     {
+        Physics2D.IgnoreLayerCollision(3, 7, false); 
+
         player = GameObject.FindWithTag("Player");
         mainCamera = GameObject.FindWithTag("MainCamera");
         actionMap = player.GetComponent<PlayerInput>().actions.FindActionMap("Player");
-        Physics2D.IgnoreLayerCollision(3, 7, false);
 
         player.transform.position = playerSpawn.transform.position;
         mainCamera.transform.position = player.transform.position;
-        dontDestroy = FindObjectsOfType<DontDestroy>();
     }
 
-    void Update()
+    private void Update()
     {
         if (!levelLoaded)
         {

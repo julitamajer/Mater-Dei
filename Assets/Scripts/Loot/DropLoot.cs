@@ -7,14 +7,11 @@ public class DropLoot : MonoBehaviour
 {
     public TypeOfLoot loot;
 
-
     [SerializeField] GameObject hpPrefab;
     [SerializeField] GameObject axePrefab;
     [SerializeField] GameObject moneyPrefab;
 
-
-    [HideInInspector]
-    public int objectID;
+    int objectID;
 
     private void Awake()
     {
@@ -48,7 +45,6 @@ public class DropLoot : MonoBehaviour
             if (loot == TypeOfLoot.Axe)
             {
                 Instantiate(axePrefab, transform.position, transform.rotation);
-
             }
         }
     }

@@ -17,20 +17,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] SpriteRenderer playerSprite;
 
     float horizontal;
+
     [SerializeField] float speed = 3f;
     float jumpingPower = 7f;
+
     bool isFacingRight = true;
     bool isMovingToTarget = false;
 
     GameObject currentStairs;
 
-    void OnEnable()
+    private void OnEnable()
     {
         PlayerCombat.onPlayerDamage += OnDamage;
         LootBehaviour.onLastLootCollected += StopMoving;
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKey(KeyCode.S))
         {
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!isMovingToTarget)
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -74,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool IsGrounded()
+    private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    void Flip()
+    private void Flip()
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
@@ -87,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = localScale;
     }
 
-   void OnTriggerEnter2D(Collider2D collision)
+   private void OnTriggerEnter2D(Collider2D collision)
    {
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
         {
@@ -108,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         }
    }
 
-    void OnDamage(GameObject tagObject)
+    private void OnDamage(GameObject tagObject)
     {
         StartCoroutine(FadeSpritePlayer());
     }
@@ -118,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         horizontal = context.ReadValue<Vector2>().x;
     }
 
-    IEnumerator MoveTowardsTarget(Vector2 targetPosition)
+    private IEnumerator MoveTowardsTarget(Vector2 targetPosition)
     {
         isMovingToTarget = true;
         float tolerance = 0.1f;
@@ -142,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         isMovingToTarget = false;
     }
 
-    IEnumerator FadeSpritePlayer()
+    private IEnumerator FadeSpritePlayer()
     {
         Color color = playerSprite.color;
         color.a = 0.5f;
@@ -158,13 +160,13 @@ public class PlayerMovement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 7, false);
     }
 
-    void StopMoving()
+    private void StopMoving()
     {
         InputActionMap actionMap = GetComponent<PlayerInput>().actions.FindActionMap("Player");
         actionMap.Disable();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         PlayerCombat.onPlayerDamage -= OnDamage;
         LootBehaviour.onLastLootCollected -= StopMoving;

@@ -27,7 +27,7 @@ public class FadeScript : MonoBehaviour
         StartCoroutine(HideFade());
     }
 
-    IEnumerator ShowFade()
+    private IEnumerator ShowFade()
     {
         fadeIn = true;
 
@@ -48,7 +48,7 @@ public class FadeScript : MonoBehaviour
         }
     }
 
-    IEnumerator HideFade()
+    private IEnumerator HideFade()
     {
         fadeOut = true;
 
@@ -63,7 +63,6 @@ public class FadeScript : MonoBehaviour
 
         fadeOut = false; 
     }
-
 
     private void OnDisable()
     {
