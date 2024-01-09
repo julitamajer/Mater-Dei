@@ -351,7 +351,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163239788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b70fbf998afaf4e8752c3a99d7bba6, type: 3}
   m_Name: 
@@ -2994,12 +2994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea889bfdfa5fbdb40af5f8bd1fb0692e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionMap:
-    m_Name: Action Map
-    m_Id: 90ead5fc-9059-406a-8ec8-6ac66f1e8809
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []
+  dontDestroyList: []
 --- !u!61 &1399346272
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3156,7 +3151,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423723324}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b70fbf998afaf4e8752c3a99d7bba6, type: 3}
   m_Name: 
@@ -3471,7 +3466,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500866594}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b70fbf998afaf4e8752c3a99d7bba6, type: 3}
   m_Name: 
@@ -4963,7 +4958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1996525586}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b70fbf998afaf4e8752c3a99d7bba6, type: 3}
   m_Name: 
@@ -5437,7 +5432,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4414331304122571279}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b70fbf998afaf4e8752c3a99d7bba6, type: 3}
   m_Name: 

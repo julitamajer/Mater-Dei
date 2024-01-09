@@ -41,6 +41,7 @@ public class FadeScript : MonoBehaviour
                 {
                     fadeIn = false;
                     SceneManager.LoadScene(2);
+
                 }
             }
             yield return new WaitForEndOfFrame(); 

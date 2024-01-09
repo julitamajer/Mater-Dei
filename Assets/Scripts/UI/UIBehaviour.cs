@@ -198,9 +198,27 @@ public class UIBehaviour : MonoBehaviour
             socrePanelText.SetText("SCORE: " + scoreCount.ToString());
             PlayerPrefs.SetInt("Highscore", scoreCount);
             PlayerPrefs.SetInt("GamePlayed", 1);
+            ResetUIValues();
             OnEndGame?.Invoke();
             CancelInvoke("TimeToPoints");
         }
+    }
+
+    private void ResetUIValues()
+    {
+        scoreCount = 0;
+        score.SetText("00000");
+
+        healthBar.value = 1;
+        enemyHealthBar.value = 1;
+
+        axeCount = 0;
+        score.SetText("A " + "0");
+
+        timeStop = false;
+
+        deadPanel.SetActive(false);
+        scorePanel.SetActive(false);
     }
 
     private void OnDisable()

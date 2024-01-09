@@ -19,22 +19,16 @@ public class SpawnPlayer : MonoBehaviour
 
     bool levelLoaded = false;
 
-    private void Awake()
+    private void Start()
     {
         player = GameObject.FindWithTag("Player");
         mainCamera = GameObject.FindWithTag("MainCamera");
         actionMap = player.GetComponent<PlayerInput>().actions.FindActionMap("Player");
+        Physics2D.IgnoreLayerCollision(3, 7, false);
 
         player.transform.position = playerSpawn.transform.position;
         mainCamera.transform.position = player.transform.position;
         dontDestroy = FindObjectsOfType<DontDestroy>();
-    }
-    private void Start()
-    {
-        foreach (var item in dontDestroy)
-        {
-            item.enabled = false;
-        }
     }
 
     void Update()
