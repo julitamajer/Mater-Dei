@@ -31,7 +31,6 @@ public class PlayerCombat : MonoBehaviour
 
     public void Throw(InputAction.CallbackContext context)
     {
-        Debug.Log("here!");
         if (context.started)
         {
             if (ui.axeCount > 0)
