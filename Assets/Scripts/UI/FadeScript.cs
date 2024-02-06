@@ -40,7 +40,7 @@ public class FadeScript : MonoBehaviour
                 if (canvasGroup.alpha >= 1)
                 {
                     fadeIn = false;
-                    SceneManager.LoadScene(2);
+                    SceneManager.LoadScene(5);
 
                 }
             }
