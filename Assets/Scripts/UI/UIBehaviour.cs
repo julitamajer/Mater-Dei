@@ -63,21 +63,21 @@ public class UIBehaviour : MonoBehaviour
             OnBossKilled?.Invoke();
         }
 
-        if  (healthBar.value <= 0 && heartCount==0)
+        if  (healthBar.value <= 0 && heartCount == 0)
         {
             PlayerDeadth();
         }
     }
 
-    public void LootTypeBehaviour(int worth, Loot lootType)
+    public void LootTypeBehaviour(int value, Loot lootType)
     {
         switch (lootType)
         {
             case Loot.Money:
-                AddScoreMoney(worth);
+                AddScoreMoney(value);
                 break;
             case Loot.HP:
-                AddHeart();
+                AddHeart(value);
                 break;
             case Loot.Weapon:
                 AddAxe();
@@ -96,9 +96,9 @@ public class UIBehaviour : MonoBehaviour
             score.SetText(scoreCount.ToString());
     }
 
-    private void AddHeart()
+    private void AddHeart(int amount)
     {
-        heartCount++;
+        heartCount += amount;
         heart.SetText(" " + heartCount.ToString());
     }
 

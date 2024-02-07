@@ -509,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 7910640705458692441, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
       propertyPath: lootTypeObj
       value: 
-      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
+      objectReference: {fileID: 11400000, guid: e727220d9413bc44996f80ef5b7583e5, type: 2}
     - target: {fileID: 8973043512396624111, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
       propertyPath: m_Name
       value: Loot (3)
@@ -782,7 +782,7 @@ PrefabInstance:
     - target: {fileID: 7910640705458692441, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
       propertyPath: lootTypeObj
       value: 
-      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
+      objectReference: {fileID: 11400000, guid: fdeb4a02f9be50f4499e6db0e7b1d84d, type: 2}
     - target: {fileID: 8973043512396624111, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
       propertyPath: m_Name
       value: Loot (2)

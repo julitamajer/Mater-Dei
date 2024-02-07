@@ -27,7 +27,6 @@ public class DropLoot : MonoBehaviour
         {
              Instantiate(lootPrefab, transform.position, transform.rotation);
         }
-   
     }
 
     private void OnDisable()

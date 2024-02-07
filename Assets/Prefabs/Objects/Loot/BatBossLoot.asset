@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10d691c1eb0b4964cb99d43540719339, type: 3}
-  m_Name: Money
+  m_Name: BatBossLoot
   m_EditorClassIdentifier: 
   type: 0
-  worth: 1000
-  prefab: {fileID: 6588927359913385973, guid: 770359b092324a04aa16aa77ce126cac, type: 3}
+  worth: 0
+  prefab: {fileID: 0}

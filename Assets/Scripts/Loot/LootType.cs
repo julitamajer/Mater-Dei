@@ -6,7 +6,7 @@ using UnityEngine;
 public class LootType : ScriptableObject
 {
     public Loot type;
-    public int worth;
+    public int value;
     public GameObject prefab;
 }
 public enum Loot

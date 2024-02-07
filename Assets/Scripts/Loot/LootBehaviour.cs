@@ -7,10 +7,11 @@ using static UnityEditor.PlayerSettings.Switch;
 public class LootBehaviour : MonoBehaviour
 {
     public static event System.Action<int, Loot> OnCollectLoot;
+    public static event System.Action onLastLootCollected;
 
     [SerializeField] LootType lootTypeObj;
 
-    int lootWorth;
+    int lootValue;
     Loot lootType;
     
     Transform groundCheck;
@@ -20,7 +21,7 @@ public class LootBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        lootWorth = lootTypeObj.worth;
+        lootValue = lootTypeObj.value;
         lootType = lootTypeObj.type;
 
         groundCheck = transform.GetChild(0);
@@ -46,7 +47,13 @@ public class LootBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            OnCollectLoot?.Invoke(lootWorth, lootType);
+            OnCollectLoot?.Invoke(lootValue, lootType);
+
+            if (gameObject.CompareTag("BossLoot"))
+            {
+                onLastLootCollected?.Invoke();
+            }
+
             Destroy(gameObject);
         }
     }

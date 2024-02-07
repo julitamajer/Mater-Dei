@@ -203,3 +203,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed982c215b2ebb14bb4f078e6e00d25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTypeObj: {fileID: 11400000, guid: 4eed3d9434d8fbb42929b3d22104deb0, type: 2}
