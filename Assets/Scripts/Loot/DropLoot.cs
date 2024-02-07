@@ -5,73 +5,35 @@ using UnityEngine;
 
 public class DropLoot : MonoBehaviour
 {
-    public TypeOfLoot loot;
-
-    [SerializeField] GameObject hpPrefab;
-    [SerializeField] GameObject axePrefab;
-    [SerializeField] GameObject moneyPrefab;
+    [SerializeField] LootType lootTypeObj;
 
     int objectID;
+    GameObject lootPrefab;
 
-    private void Awake()
+    private void Start()
     {
         objectID = gameObject.GetInstanceID();
+        lootPrefab = lootTypeObj.prefab;
     }
 
     private void OnEnable()
     {
-        Bullet.OnLootCollision += HPLoot;
-        Bullet.OnLootCollision += AxeLoot;
-        Bullet.OnLootCollision += MoneyLoot;
+        Bullet.OnLootCollision += HandleLoot;
     }
 
-    private void HPLoot(int objectId)
+    private void HandleLoot(int objectId)
     {
         if (objectId == objectID)
         {
-            if (loot == TypeOfLoot.HP)
-            {
-                Instantiate(hpPrefab, transform.position, transform.rotation);
-
-            }
+             Instantiate(lootPrefab, transform.position, transform.rotation);
         }
    
     }
 
-    private void AxeLoot(int objectId)
-    {
-        if (objectId == objectID)
-        {
-            if (loot == TypeOfLoot.Axe)
-            {
-                Instantiate(axePrefab, transform.position, transform.rotation);
-            }
-        }
-    }
-
-    private void MoneyLoot(int objectId)
-    {
-        if (objectId == objectID)
-        {
-            if (loot == TypeOfLoot.Money)
-            {
-                Instantiate(moneyPrefab, transform.position, transform.rotation);
-
-            }
-        }
-    }
-
     private void OnDisable()
     {
-        Bullet.OnLootCollision -= HPLoot;
-        Bullet.OnLootCollision -= AxeLoot;
-        Bullet.OnLootCollision -= MoneyLoot;
+        Bullet.OnLootCollision -= HandleLoot;
     }
 }
 
-public enum TypeOfLoot
-{
-    HP,
-    Axe,
-    Money
-}
+

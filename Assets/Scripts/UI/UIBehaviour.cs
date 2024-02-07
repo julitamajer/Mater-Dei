@@ -41,12 +41,7 @@ public class UIBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        LootBehaviour.collectMoney += AddScoreMoney;
-        LootBehaviour.collectHeart += AddHeart;
-        LootBehaviour.collectAxe += AddAxe;
-        LootBehaviour.collectBossLoot += AddScoreMoney;
-        LootBehaviour.onLastLootCollected += EndGameScore;
-
+        LootBehaviour.OnCollectMoney += AddScoreMoney;
         PlayerCombat.onPlayerDamage += DecreaseHealth;
 
         Bullet.OnBossDamage += DecreaseBossHealth;
@@ -76,7 +71,7 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
-    private void AddScoreMoney(int worth)
+    public void AddScoreMoney(ILootable lootable, int worth)
     {
         scoreCount += worth;
 
@@ -227,10 +222,6 @@ public class UIBehaviour : MonoBehaviour
 
     private void OnDisable()
     {
-        LootBehaviour.collectMoney -= AddScoreMoney;
-        LootBehaviour.collectHeart -= AddHeart;
-        LootBehaviour.collectAxe -= AddAxe;
-        LootBehaviour.onLastLootCollected -= EndGameScore;
 
         PlayerCombat.onPlayerDamage -= DecreaseHealth;
 

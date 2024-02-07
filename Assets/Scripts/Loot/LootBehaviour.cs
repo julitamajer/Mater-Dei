@@ -2,24 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Bullet;
+using static UnityEditor.PlayerSettings.Switch;
 
 public class LootBehaviour : MonoBehaviour
 {
-    public delegate void CollectMoney(int worth);
-    public static event CollectMoney collectMoney;
+    public static event System.Action<ILootable, int> OnCollectMoney;
+    public static event System.Action<ILootable> OnCollectLoot;
 
-    public delegate void CollectHeart();
-    public static event CollectHeart collectHeart;
+    [SerializeField] LootType lootTypeObj;
 
-    public delegate void CollectAxe();
-    public static event CollectAxe collectAxe;
-
-    public delegate void CollectBossLoot(int worth);
-    public static event CollectBossLoot collectBossLoot;
-
-    public delegate void LastLootCollected();
-    public static event LastLootCollected onLastLootCollected;
-
+    int lootWorth;
+    Loot lootType;
+    
     Transform groundCheck;
     LayerMask groundLayer;
 
@@ -28,6 +22,8 @@ public class LootBehaviour : MonoBehaviour
     private void Awake()
     {
         groundCheck = transform.GetChild(0);
+        lootWorth = lootTypeObj.worth;
+        lootType = lootTypeObj.type;
         groundLayer = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
     }
@@ -47,28 +43,19 @@ public class LootBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Money"))
-        {
-            collectMoney?.Invoke(1000);
-            Destroy(gameObject);
-        }
+        ILootable lootable = collision.gameObject.GetComponent<ILootable>();
 
-        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Heart"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            collectHeart?.Invoke();
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("Axe"))
-        {
-            collectAxe?.Invoke();
-            Destroy(gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("Player") && gameObject.CompareTag("BossLoot"))
-        {
-            collectBossLoot?.Invoke(8000);
-            onLastLootCollected?.Invoke();
+            switch (lootType)
+            {
+                case Loot.Money:
+                    OnCollectMoney?.Invoke(lootable, lootWorth);
+                    break;
+                case Loot.Collect:
+                    OnCollectLoot?.Invoke(lootable);
+                    break;
+            }
             Destroy(gameObject);
         }
     }

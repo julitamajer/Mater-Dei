@@ -506,6 +506,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7910640705458692441, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
     - target: {fileID: 8973043512396624111, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
       propertyPath: m_Name
       value: Loot (3)
@@ -775,6 +779,10 @@ PrefabInstance:
       propertyPath: loot
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7910640705458692441, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
     - target: {fileID: 8973043512396624111, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
       propertyPath: m_Name
       value: Loot (2)
@@ -966,6 +974,10 @@ PrefabInstance:
       propertyPath: loot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7910640705458692441, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
     - target: {fileID: 8973043512396624111, guid: 80f93deaba182df49ae3aa76e973f93f, type: 3}
       propertyPath: m_Name
       value: Loot (1)

@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         PlayerCombat.onPlayerDamage += OnDamage;
-        LootBehaviour.onLastLootCollected += StopMoving;
+       // LootBehaviour.onLastLootCollected += StopMoving;
     }
 
     private void Update()
@@ -169,6 +169,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         PlayerCombat.onPlayerDamage -= OnDamage;
-        LootBehaviour.onLastLootCollected -= StopMoving;
+       // LootBehaviour.onLastLootCollected -= StopMoving;
     }
 }
