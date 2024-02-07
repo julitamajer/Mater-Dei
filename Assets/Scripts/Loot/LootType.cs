@@ -12,5 +12,6 @@ public class LootType : ScriptableObject
 public enum Loot
 {
     Money,
-    Collect
+    HP,
+    Weapon
 }

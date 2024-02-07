@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ILootable
 {
-    public void CollectMoney(int worth);
+    public void Collect(int worth, Loot lootType);
 }

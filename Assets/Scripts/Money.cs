@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Types;
 using UnityEngine;
 
-public class Money : MonoBehaviour, ILootable
+public class Money : MonoBehaviour
 {
     UIBehaviour uiIBehaviour;
 

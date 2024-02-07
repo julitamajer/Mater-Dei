@@ -6,8 +6,7 @@ using static UnityEditor.PlayerSettings.Switch;
 
 public class LootBehaviour : MonoBehaviour
 {
-    public static event System.Action<ILootable, int> OnCollectMoney;
-    public static event System.Action<ILootable> OnCollectLoot;
+    public static event System.Action<int, Loot> OnCollectLoot;
 
     [SerializeField] LootType lootTypeObj;
 
@@ -21,10 +20,12 @@ public class LootBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        groundCheck = transform.GetChild(0);
         lootWorth = lootTypeObj.worth;
         lootType = lootTypeObj.type;
+
+        groundCheck = transform.GetChild(0);
         groundLayer = LayerMask.GetMask("Ground");
+
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -43,19 +44,9 @@ public class LootBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ILootable lootable = collision.gameObject.GetComponent<ILootable>();
-
         if (collision.gameObject.CompareTag("Player"))
         {
-            switch (lootType)
-            {
-                case Loot.Money:
-                    OnCollectMoney?.Invoke(lootable, lootWorth);
-                    break;
-                case Loot.Collect:
-                    OnCollectLoot?.Invoke(lootable);
-                    break;
-            }
+            OnCollectLoot?.Invoke(lootWorth, lootType);
             Destroy(gameObject);
         }
     }

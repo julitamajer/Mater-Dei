@@ -41,11 +41,9 @@ public class UIBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        LootBehaviour.OnCollectMoney += AddScoreMoney;
+        LootBehaviour.OnCollectLoot += LootTypeBehaviour;
         PlayerCombat.onPlayerDamage += DecreaseHealth;
-
         Bullet.OnBossDamage += DecreaseBossHealth;
-
         EnemyBullet.OnBossDamageOnPlayer += DecreaseHealthBoss;
     }
 
@@ -71,11 +69,27 @@ public class UIBehaviour : MonoBehaviour
         }
     }
 
-    public void AddScoreMoney(ILootable lootable, int worth)
+    public void LootTypeBehaviour(int worth, Loot lootType)
+    {
+        switch (lootType)
+        {
+            case Loot.Money:
+                AddScoreMoney(worth);
+                break;
+            case Loot.HP:
+                AddHeart();
+                break;
+            case Loot.Weapon:
+                AddAxe();
+                break;
+        }
+    }
+
+    public void AddScoreMoney(int worth)
     {
         scoreCount += worth;
 
-        if(scoreCount <= 9999)
+        if (scoreCount <= 9999)
             score.SetText("0" + scoreCount.ToString());
 
         if(scoreCount >= 10000)
@@ -222,11 +236,9 @@ public class UIBehaviour : MonoBehaviour
 
     private void OnDisable()
     {
-
+        LootBehaviour.OnCollectLoot -= LootTypeBehaviour;
         PlayerCombat.onPlayerDamage -= DecreaseHealth;
-
         Bullet.OnBossDamage -= DecreaseBossHealth;
-
         EnemyBullet.OnBossDamageOnPlayer -= DecreaseHealthBoss;
     }
 }
