@@ -11,7 +11,6 @@ public class Loading : ScenesToChange
     void Start()
     {
         StartCoroutine(ProgressLoadingBar());
-        ChangeScenes();
     }
 
     private IEnumerator ProgressLoadingBar()
@@ -19,6 +18,9 @@ public class Loading : ScenesToChange
         while (loadingBar.fillAmount < 1f)
         {
             loadingBar.fillAmount += 0.1f;
+
+            if(loadingBar.fillAmount > 0.9f)
+                ChangeScenes();
 
             yield return new WaitForSeconds(1f);
         }
