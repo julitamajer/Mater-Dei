@@ -1,58 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadGame : MonoBehaviour
 {
-    [SerializeField] Image loadingBar;
+    List<SceneAsset> scenesToLoadList = new List<SceneAsset>();
+    List<SceneAsset> scenesToUnloadList = new List<SceneAsset>();
 
-    List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+    SceneManager mySeneManager = new SceneManager();
 
-    private void Start()
+    private void OnEnable()
     {
-        StartCoroutine(ProgressLoadingBar());
-        StartCoroutine(DelayLoading(10f));
+        ScenesToChange.OnChangeScene += LoadAndUnload;
     }
 
     private IEnumerator DelayLoading(float delay)
     {
         yield return new WaitForSeconds(delay);
+        mySeneManager.LoadAndUnloadScenesAsync(scenesToLoadList, scenesToUnloadList);
 
-        scenesToLoad.Add(SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive));
-        scenesToLoad.Add(SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive));
-        scenesToLoad.Add(SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive));
+        /*foreach (var sceneAsset in scenesToLoadAssets)
+        {
+            var scenePath = AssetDatabase.GetAssetPath(sceneAsset);
+            var sceneIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
+            scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive));
+        }*/
     }
 
-    private void Update()
+    void LoadAndUnload(float delay, List<SceneAsset> scenesToLoad, List<SceneAsset> scenesToUnload)
     {
-        bool allScenesLoaded = true;
-        foreach (var sceneLoadOperation in scenesToLoad)
+        Debug.Log("dupa");
+        StartCoroutine(LoadAndUnloadScenesCoroutine(delay, scenesToLoad, scenesToUnload));
+    }
+
+    private IEnumerator LoadAndUnloadScenesCoroutine(float delay, List<SceneAsset> scenesToLoad, List<SceneAsset> scenesToUnload)
+    {
+        yield return new WaitForSeconds(delay);
+        foreach (SceneAsset sceneAsset in scenesToLoad)
         {
-            if (!sceneLoadOperation.isDone)
-            {
-                allScenesLoaded = false;
-                break;
-            }
+            string sceneName = sceneAsset.name;
+            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         }
 
-        if (allScenesLoaded)
+        foreach (SceneAsset sceneAsset in scenesToUnload)
         {
-            SceneManager.UnloadSceneAsync(1);
-            
-            Debug.Log("All scenes loaded!");
+            string sceneName = sceneAsset.name;
+            SceneManager.UnloadSceneAsync(sceneName);
         }
     }
 
+    /* private void Update()
+     {
+         bool allScenesLoaded = true;
+         foreach (var sceneLoadOperation in scenesToLoad)
+         {
+             if (!sceneLoadOperation.isDone)
+             {
+                 allScenesLoaded = false;
+                 break;
+             }
+         }
 
-    private IEnumerator ProgressLoadingBar()
+         if (allScenesLoaded)
+         {
+             SceneManager.UnloadSceneAsync(1);
+
+             Debug.Log("All scenes loaded!");
+         }
+     }*/
+
+    
+
+    private void OnDisable()
     {
-        while (loadingBar.fillAmount < 1f)
-        {
-            loadingBar.fillAmount += 0.1f;
-
-            yield return new WaitForSeconds(1f);
-        }
+        ScenesToChange.OnChangeScene -= LoadAndUnload;
     }
 }

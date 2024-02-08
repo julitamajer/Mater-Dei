@@ -42,6 +42,8 @@ public class UIBehaviour : MonoBehaviour
     private void OnEnable()
     {
         LootBehaviour.OnCollectLoot += LootTypeBehaviour;
+        LootBehaviour.onLastLootCollected += EndGameScore;
+
         PlayerCombat.onPlayerDamage += DecreaseHealth;
         Bullet.OnBossDamage += DecreaseBossHealth;
         EnemyBullet.OnBossDamageOnPlayer += DecreaseHealthBoss;
@@ -237,6 +239,8 @@ public class UIBehaviour : MonoBehaviour
     private void OnDisable()
     {
         LootBehaviour.OnCollectLoot -= LootTypeBehaviour;
+        LootBehaviour.onLastLootCollected -= EndGameScore;
+
         PlayerCombat.onPlayerDamage -= DecreaseHealth;
         Bullet.OnBossDamage -= DecreaseBossHealth;
         EnemyBullet.OnBossDamageOnPlayer -= DecreaseHealthBoss;

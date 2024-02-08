@@ -5,23 +5,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuBehaviour : MonoBehaviour
+public class MenuBehaviour : ScenesToChange
 {
     [SerializeField] GameObject blackScreen;
     [SerializeField] GameObject lastScore;
     [SerializeField] TextMeshProUGUI lastScoreText;
 
-    private void Update() 
+    private bool hasPressedAnyKey = false;
+
+    private void Update()
     {
-        if(Input.anyKey) 
+        if (!hasPressedAnyKey && Input.anyKey)
         {
+            hasPressedAnyKey = true; 
             StartCoroutine(BlackScreen(2.0f));
-            SceneManager.LoadScene(1);
         }
 
         if (PlayerPrefs.GetInt("GamePlayed") == 1)
         {
-            lastScore.SetActive(true);    
+            lastScore.SetActive(true);
             lastScoreText.SetText("HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString());
         }
     }
@@ -30,5 +32,6 @@ public class MenuBehaviour : MonoBehaviour
     {
         blackScreen.SetActive(true);
         yield return new WaitForSeconds(delay);
+        ChangeScenes();
     }
 }

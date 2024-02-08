@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396329122}
     m_Modifications:
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.39716
@@ -277,6 +281,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396329122}
     m_Modifications:
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: e727220d9413bc44996f80ef5b7583e5, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 62.46
@@ -934,6 +942,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396329122}
     m_Modifications:
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: e727220d9413bc44996f80ef5b7583e5, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.149446
@@ -996,6 +1008,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396329122}
     m_Modifications:
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: e727220d9413bc44996f80ef5b7583e5, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.93
@@ -1288,6 +1304,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396329122}
     m_Modifications:
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: fdeb4a02f9be50f4499e6db0e7b1d84d, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 43.638283
@@ -1484,6 +1504,10 @@ PrefabInstance:
       propertyPath: loot
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 67.47
@@ -1924,6 +1948,10 @@ PrefabInstance:
       propertyPath: loot
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: e727220d9413bc44996f80ef5b7583e5, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.615576
@@ -1990,6 +2018,10 @@ PrefabInstance:
       propertyPath: loot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: fdeb4a02f9be50f4499e6db0e7b1d84d, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.04
@@ -2052,6 +2084,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396329122}
     m_Modifications:
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 57.303806
@@ -2118,6 +2154,10 @@ PrefabInstance:
       propertyPath: loot
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: 9bad4e849825b0c459e0c2bfc35e795c, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.893822
@@ -2246,6 +2286,10 @@ PrefabInstance:
       propertyPath: loot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: e727220d9413bc44996f80ef5b7583e5, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34.4
@@ -2523,6 +2567,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396329122}
     m_Modifications:
+    - target: {fileID: 3475138816212513210, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
+      propertyPath: lootTypeObj
+      value: 
+      objectReference: {fileID: 11400000, guid: e727220d9413bc44996f80ef5b7583e5, type: 2}
     - target: {fileID: 3542368496179282126, guid: 2950b64688d21554d8e3cd4da1a30318, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.94
