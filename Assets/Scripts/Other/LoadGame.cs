@@ -14,13 +14,26 @@ public class LoadGame : MonoBehaviour
 
     void LoadAndUnload(float delay, List<SceneAsset> scenesToLoad, List<SceneAsset> scenesToUnload)
     {
-
         StartCoroutine(LoadAndUnloadScenesCoroutine(delay, scenesToLoad, scenesToUnload));
     }
 
     private IEnumerator LoadAndUnloadScenesCoroutine(float delay, List<SceneAsset> scenesToLoad, List<SceneAsset> scenesToUnload)
     {
         yield return new WaitForSeconds(delay);
+
+        foreach (var sceneAsset in scenesToLoad)
+        {
+            var scenePath = AssetDatabase.GetAssetPath(sceneAsset);
+            var sceneIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
+            var operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+            yield return operation;
+
+            if (operation.isDone && SceneManager.sceneCount > 0)
+            {
+                var firstLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+                SceneManager.SetActiveScene(firstLoadedScene);
+            }
+        }
 
         foreach (var sceneAsset in scenesToUnload)
         {
@@ -29,14 +42,6 @@ public class LoadGame : MonoBehaviour
             Debug.Log(sceneIndex);
             SceneManager.UnloadSceneAsync(sceneIndex);
         }
-
-        foreach (var sceneAsset in scenesToLoad)
-        {
-            var scenePath = AssetDatabase.GetAssetPath(sceneAsset);
-            var sceneIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
-            SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
-        }
-
     }
 
     private void OnDisable()

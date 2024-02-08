@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed982c215b2ebb14bb4f078e6e00d25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootTypeObj: {fileID: 11400000, guid: fdeb4a02f9be50f4499e6db0e7b1d84d, type: 2}
 --- !u!61 &1681256863313003961
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: -8341319387625389457}
   - component: {fileID: 1681256863313003961}
   - component: {fileID: 1343468560486101466}
-  - component: {fileID: 6196010186418680947}
   m_Layer: 0
   m_Name: Money
   m_TagString: Money
@@ -205,15 +204,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!114 &6196010186418680947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6588927359913385973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2d7021d76d3fa4d83113bc7dea0955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

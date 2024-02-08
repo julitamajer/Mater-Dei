@@ -13,7 +13,6 @@ public class ScenesToChange : MonoBehaviour
 
     public void ChangeScenes()
     {
-        Debug.Log("dupa");
         OnChangeScene?.Invoke(delay, scenesToLoadAssets, scenesToUnloadAssets);
     }
 }
