@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Loading : ScenesToChange
-
 {
     [SerializeField] Image loadingBar;
 

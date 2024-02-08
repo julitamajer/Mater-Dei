@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   type: 2
-  worth: 1
+  value: 1
   prefab: {fileID: 6588927359913385973, guid: 23fa942aba65f364888e392cba83dcdc, type: 3}

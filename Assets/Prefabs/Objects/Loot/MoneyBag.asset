@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MoneyBag
   m_EditorClassIdentifier: 
   type: 0
-  worth: 1000
+  value: 1000
   prefab: {fileID: 6588927359913385973, guid: 770359b092324a04aa16aa77ce126cac, type: 3}

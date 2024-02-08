@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Heart
   m_EditorClassIdentifier: 
   type: 1
-  worth: 1
+  value: 1
   prefab: {fileID: 6588927359913385973, guid: 57664142ff191ec4597f24d296592b8b, type: 3}

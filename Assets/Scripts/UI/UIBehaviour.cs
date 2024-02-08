@@ -32,6 +32,9 @@ public class UIBehaviour : MonoBehaviour
     public delegate void EndGame();
     public static event EndGame OnEndGame;
 
+    public delegate void FindUIScript(UIBehaviour ui);
+    public static event FindUIScript OnFindUIScript;
+
     [SerializeField] GameObject scorePanel;
     [SerializeField] TextMeshProUGUI socrePanelText;
 
@@ -53,6 +56,7 @@ public class UIBehaviour : MonoBehaviour
     {
         score.SetText("00000");
         InvokeRepeating("DecreaseTime", 1f, 1f);
+        OnFindUIScript?.Invoke(gameObject.GetComponent<UIBehaviour>());
     }
 
     private void Update()

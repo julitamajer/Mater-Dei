@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BatBossLoot
   m_EditorClassIdentifier: 
   type: 0
-  value: 0
+  value: 10000
   prefab: {fileID: 5779394209533867498, guid: e1885e4ad4531e44a9033d31533d905a, type: 3}

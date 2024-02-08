@@ -17,6 +17,16 @@ public class PlayerCombat : MonoBehaviour
     public delegate void PlayerDamage(GameObject tagObject);
     public static event PlayerDamage onPlayerDamage;
 
+    private void OnEnable()
+    {
+        UIBehaviour.OnFindUIScript += FindUI;
+    }
+
+    private void FindUI(UIBehaviour ui)
+    {
+        this.ui = ui;
+    }
+
     public void Shoot(InputAction.CallbackContext context)
     {
         if (context.started)
