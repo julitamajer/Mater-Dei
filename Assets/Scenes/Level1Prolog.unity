@@ -998,6 +998,7 @@ GameObject:
   - component: {fileID: 1399346270}
   - component: {fileID: 1399346269}
   - component: {fileID: 1399346271}
+  - component: {fileID: 1399346273}
   - component: {fileID: 1399346272}
   m_Layer: 0
   m_Name: Entry
@@ -1085,6 +1086,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea889bfdfa5fbdb40af5f8bd1fb0692e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenesToLoadAssets:
+  - {fileID: 102900000, guid: d00e951220209814eb4f965d63589964, type: 3}
+  scenesToUnloadAssets:
+  - {fileID: 102900000, guid: 29cbd832b5b71fc4a92be54d365d985c, type: 3}
+  delay: 1
 --- !u!61 &1399346272
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1130,6 +1136,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1399346273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399346267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2e2a9abe3ad7c44b6c77617ee54380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1487421383
 GameObject:
   m_ObjectHideFlags: 0

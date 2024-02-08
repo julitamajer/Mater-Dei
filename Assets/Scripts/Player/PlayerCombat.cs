@@ -25,6 +25,7 @@ public class PlayerCombat : MonoBehaviour
     private void FindUI(UIBehaviour ui)
     {
         this.ui = ui;
+        Debug.Log("UI has been found.");
     }
 
     public void Shoot(InputAction.CallbackContext context)

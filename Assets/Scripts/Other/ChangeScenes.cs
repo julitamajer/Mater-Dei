@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class ChangeScenes : MonoBehaviour
+public class ChangeScenes : ScenesToChange
 {
     List<DontDestroy> dontDestroyList;
 
@@ -47,6 +47,7 @@ public class ChangeScenes : MonoBehaviour
                 item.DontDestroyObj();
             }
 
+            ChangeScenes();
             OnFade?.Invoke();
         }
     }
